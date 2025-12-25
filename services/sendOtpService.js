@@ -20,8 +20,8 @@ export async function sendOtpService(email) {
     </div>
   `;
 
-  await resend.emails.send({
-    from: "Storage App <otp@procodrr.dev>",
+   await resend.emails.send({
+    from: "Storage App <no-reply@rexlab.online>",
     to: email,
     subject: "Storage App OTP",
     html,
