@@ -15,6 +15,8 @@ await connectDB();
 const PORT = process.env.PORT || 4000;
 
 const app = express();
+app.set("trust proxy", 1);
+
 app.use(cookieParser(process.env.SESSION_SECRET));
 app.use(express.json());
 app.use(
@@ -24,7 +26,6 @@ app.use(
   })
 );
 
-app.set("trust proxy", 1);
 
 app.use("/directory", checkAuth, directoryRoutes);
 app.use("/file", checkAuth, fileRoutes);
