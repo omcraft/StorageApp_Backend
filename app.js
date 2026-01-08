@@ -32,7 +32,7 @@ app.use("/file", fileRoutes);
 app.use("/subscriptions", checkAuth, subscriptionRoutes);
 app.use("/webhooks", webhookRoutes);
 app.use("/", userRoutes);
-app.use("/auth", authRoutes);
+app.use("/auth",checkAuth, authRoutes);
 
 app.get("/",(req,res)=>{
   res.json({message:"I am Working"})
