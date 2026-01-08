@@ -122,14 +122,11 @@ export const loginWithGoogle = async (req, res, next) => {
     const sessionExpiryTime = 60 * 1000 * 60 * 24 * 7;
     await redisClient.expire(redisKey, sessionExpiryTime / 1000);
 
-    res.cookie("sid", sessionId, {
+   res.cookie("sid", sessionId, {
       httpOnly: true,
       signed: true,
       maxAge: sessionExpiryTime,
-      secure: true,
-      sameSite: "none"
     });
-
     mongooseSession.commitTransaction();
     res.status(201).json({ message: "account created and logged in" });
   } catch (err) {
